@@ -1,0 +1,36 @@
+<template name="home">
+  {{#if currentUser}}
+  <div layout horizontal center around-justified>
+    <div>
+      <h2>Create a game</h2>
+      <form layout vertical class="form" id="createGameForm">
+        <label for="gameName">Name the Game</label>
+        <input type="text" name="gameName" placeholder="{{firstName}}'s game">
+        <input type="text" name="passcode" placeholder="4 digit number">
+        <div>
+          <button type="submit" class="btn">Create New Game</button>
+        </div>
+      </form>
+    </div>
+    <span>or</span>
+    <div>
+      <h2>Join a game</h2>
+
+      <ul class="unstyled" id="games">
+        {{#each games}}
+          <li data-game-id="{{this._id}}">{{this.name}}
+            <ul>
+              {{#each this.players}}
+                <li>{{> displayUsername}}</li>
+              {{/each}}
+            </ul>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  {{else}}
+
+    <div>Sign in with facebook up at the top right!</div>
+  {{/if}}
+</template>

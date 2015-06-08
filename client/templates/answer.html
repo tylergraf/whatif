@@ -1,0 +1,33 @@
+<template name="answer">
+  <h2>{{game.name}}</h2>
+  Waiting on:
+  <ul layout horizontal class="unstyled">
+    {{#each waitingOn}}
+    <li>{{> displayUsername}}</li>
+    {{/each}}
+  </ul>
+  {{#if answeredQuestion}}
+  <div>
+
+  </div>
+  {{else}}
+  <div>Question:</div>
+  <p>{{question.question}}</p>
+  <p>id: {{question._id}}</p>
+  <p>gameId: {{question.gameId}}</p>
+
+  <div>
+    <form layout vertical id="answerForm" name="answerForm">
+      <label for="whatif">Answer the Question</label>
+      <textarea name="answer"></textarea>
+      <input type="hidden" value="{{question._id}}" name="questionId">
+      <div>
+        <button class="btn" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  {{/if}}
+
+
+  <a href="#" id="leaveGame" class="btn">Leave Game</a>
+</template>

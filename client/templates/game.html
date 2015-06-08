@@ -1,0 +1,30 @@
+<template name="game">
+  Here's the game:
+  <h2>{{game.name}} Round: {{game.round}}</h2>
+
+Waiting on:
+<ul layout horizontal class="unstyled">
+  {{#each waitingOn}}
+  <li>{{> displayUsername}}</li>
+  {{/each}}
+</ul>
+  {{#if askedQuestion}}
+  <div>
+
+  </div>
+  {{else}}
+  <div>
+    <form layout vertical id="questionForm" name="questionForm">
+      <label for="whatif">What If Question</label>
+      <textarea name="question"></textarea>
+
+      <div>
+        <button class="btn" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  {{/if}}
+
+
+  <a href="#" id="leaveGame" class="btn">Leave Game</a>
+</template>

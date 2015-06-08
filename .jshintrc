@@ -1,0 +1,34 @@
+{
+  "camelcase": true,
+  "laxcomma": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": "nofunc",
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonbsp": true,
+  "nonew": true,
+  "undef": true,
+
+  "strict": false,
+  "maxdepth": 4,
+  "maxcomplexity": 5,
+  "maxlen": 150,
+  "devel": true,
+  "node": true,
+
+  "globals": {
+    "Games": true,
+    "Questions": true,
+    "Mongo": true,
+    "Meteor": true,
+    "Session": true,
+    "alert": true,
+    "Router": true,
+    "Template": true,
+    "_": true
+  }
+}

@@ -1,6 +1,7 @@
 Meteor.subscribe('users');
 Meteor.subscribe('games');
 Meteor.subscribe('questions');
+Meteor.subscribe('actions');
 
 Router.configure({
   layoutTemplate: 'layout'
@@ -92,5 +93,11 @@ Router.route('/game/read', function () {
   var question = Questions.findOne({userId: questionId, round: Session.get('currentGameRound'),gameId: Session.get('currentGameId')});
 
   this.render('read', {data: {game: game, question: question}});
+
+});
+
+Router.route('/actions', function () {
+
+  this.render('createActions');
 
 });

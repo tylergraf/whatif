@@ -29,6 +29,8 @@
     "alert": true,
     "Router": true,
     "Template": true,
+    "Actions": true,
+    "document": true,
     "_": true
   }
 }

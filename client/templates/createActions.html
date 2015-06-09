@@ -1,0 +1,34 @@
+<template name="createActions">
+  <h3>The Actions</h3>
+  <form id="actionForm">
+    <select name="actionType" id="">
+      <option value="verb">Verb</option>
+      <option value="noun">noun</option>
+    </select>
+    <div>
+      <label for="">Present Tense</label>
+      <input type="text" name="presentValue">
+    </div>
+    <div class="pastTense">
+      <label for="">Past Tense</label>
+      <input type="text" name="pastValue">
+    </div>
+    <div>
+      <button type="submit" class="btn">Save</button>
+    </div>
+  </form>
+
+  <h3>Verbs</h3>
+  {{# each actions}}
+    {{# if verb}}
+      <div class="action">{{actionValue.present}} | {{actionValue.past}}</div>
+    {{/ if}}
+  {{/ each}}
+
+  <h3>Nouns</h3>
+  {{# each actions}}
+    {{# if noun}}
+      <div class="action">{{actionValue.present}}</div>
+    {{/ if}}
+  {{/ each}}
+</template>

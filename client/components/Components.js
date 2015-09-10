@@ -1,6 +1,7 @@
 var components = [
   'UserComponent',
-  'HeaderComponent'
+  'HeaderComponent',
+  'TapComponent'
 ];
 
 var ngModule = angular.module('Components', components);

@@ -1,12 +1,12 @@
 <header ng-hide="hideHeader" class="main-header layout horizontal center justified" ng-controller="HeaderController">
   <div class="back">
-    <!-- <span ng-click="back()" ng-show="backState" class="back-button">&#10092;</span> -->
-    <span ng-click="back()" ng-show="backState" class="back-button"></span>
+    <!-- <span ng-tap="back()" ng-show="backState" class="back-button">&#10092;</span> -->
+    <span ng-tap="back()" ng-show="backState" class="back-button"></span>
   </div>
   <div class="flex">
     <h1 class="main-heading cursive">{{mainHeading}}</h1>
   </div>
-  <span class="main-avatar avatar" img-src="{{currentUser.profile.avatar}}" ng-click="logout()">
+  <span class="main-avatar avatar" img-src="{{currentUser.profile.avatar}}" ng-tap="logout()">
     <img ng-src="{{currentUser.profile.avatar}}" alt="{{currentUser.profile.name}}">
   </span>
 </header>

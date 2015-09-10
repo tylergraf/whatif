@@ -1,7 +1,7 @@
 <div class="view-height">
   <div class="layout vertical join-page">
     <div class="layout vertical">
-      <div ng-repeat="game in games" ng-click="joinGame(game)" class="list-item layout horizontal center">
+      <div ng-repeat="game in games" ng-tap="joinGame(game)" class="list-item layout horizontal center">
         <user user-id="{{game.creator}}" size="small" name="false"></user>
         <div class="layout vertical">
           <span>{{game.name}}</span>

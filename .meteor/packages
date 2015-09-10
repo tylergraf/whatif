@@ -10,5 +10,9 @@ accounts-facebook
 accounts-ui-unstyled
 mrt:bootstrap-3
 stylus
-iron:router
 underscore
+urigo:angular
+angularui:angular-ui-router
+simple:rest
+nimble:restivus
+simple:json-routes

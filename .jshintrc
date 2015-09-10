@@ -21,6 +21,7 @@
   "node": true,
 
   "globals": {
+    "check": true,
     "Games": true,
     "Questions": true,
     "Mongo": true,
@@ -31,6 +32,7 @@
     "Template": true,
     "Actions": true,
     "document": true,
+    "angular": true,
     "_": true
   }
 }

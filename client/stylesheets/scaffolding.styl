@@ -1,0 +1,35 @@
+@require 'color.styl'
+
+body
+  background: $color.green
+
+.main-header
+  height: 50px
+  background: $color.mediumGreen
+  padding: 0 20px
+  padding-left: 0
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10
+
+  .back
+    height: 50px
+    padding: 11px 15px
+    width: 44px
+    .back-button
+      height: 100%
+      width: 100%
+      background: transparent url('/img/back.svg') no-repeat scroll 0 0
+      background-size: contain
+      display: block
+
+  .main-heading
+    margin: 0
+    color: $color.white
+    font-size: 22px
+    text-align: center
+
+.main-view
+  height: 100vh

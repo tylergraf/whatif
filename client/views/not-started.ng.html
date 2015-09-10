@@ -1,0 +1,16 @@
+<div class="view-height page-not-started">
+  <div class="layout vertical center center-justified view-height">
+    <div class="layout vertical center game-name-wrapper">
+      <h2>{{currentGame.name}}</h2>
+      <user user-id="{{currentGame.creator}}" size="medium" name="false"></user>
+    </div>
+    <div class="layout vertical center">
+      <div class="layout horizontal center-justified players-wrapper">
+        <div class="player-wrapper" ng-repeat="player in currentGame.players">
+          <user user-id="{{player}}" size="small" name="false" ng-hide="currentGame.creator === player"></user>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="btn margin-top-1" ng-click="startGame(currentGame)" ng-show="currentGame.creator === currentUser._id">Let's Play!</a>
+  </div>
+</div>

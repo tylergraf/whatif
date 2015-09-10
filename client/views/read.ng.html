@@ -1,0 +1,10 @@
+<div class="view-height">
+  <div class="layout vertical center question-page">
+    <h2>Read</h2>
+    <label for="">Question:</label>
+    <p>{{question.question}}</p>
+    <label for="">Answer:</label>
+    <p>{{question.answer}}</p>
+    <a href="#" class="btn" ng-click="nextRound(currentGame)" ng-show="currentUser._id === currentGame.creator">Next Round!</a>
+  </div>
+</div>

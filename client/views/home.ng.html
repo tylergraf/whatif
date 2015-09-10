@@ -1,0 +1,28 @@
+<div class="home-page view-height">
+  <div ng-if="$root.currentUser" class="layout horizontal center-justified fit view-height">
+    <div class="layout vertical center center-justified create-join-page fit">
+      <div class="btn-wrapper">
+        <a href="#" ui-sref="createGame" class="btn">Create Game</a>
+      </div>
+      <div class="layout horizontal center justified or-wrapper">
+        <span class="line flex"></span>
+        <span class="or">Or</span>
+        <span class="line flex"></span>
+      </div>
+      <div class="btn-wrapper">
+        <a href="#" ui-sref="joinGame" class="btn">Join Game</a>
+      </div>
+      <a href="#" ng-click="logout()">Logout</a>
+    </div>
+
+  </div>
+  <div ng-if="!$root.currentUser" class="layout horizontal center center-justified view-height">
+    <div class="layout vertical center center-justified logo-wrapper">
+      <h2 class="large-logo"></h2>
+      <h2 class="large-logo-label cursive">WhatIf</h2>
+      <a href="#" class="btn" ng-click="signIn()">Login with Facebook</a>
+    </div>
+
+  </div>
+
+</div>

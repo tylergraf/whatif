@@ -8,6 +8,7 @@ ngModule.controller('GameController', [
   '$state',
   '$stateParams',
   function($scope, $rootScope, $meteor, GameService, $state, $stateParams){
+    $rootScope.backState = true;
     window.io = $scope;
     $scope.$meteorSubscribe('games');
 

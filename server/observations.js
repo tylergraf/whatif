@@ -3,21 +3,49 @@ var stateFlow = {
   answer: 'read',
   read: 'question'
 };
-function randomizeQuestions(docId){
+function randomizeQuestions(docId, playerAdded){
   console.log('got randomized');
   var game = Games.findOne({_id: docId});
-  var unassignedUsers = game.players;
+  var gamePlayers = game.players;
+  var unassignedPlayers;
   var assignedQuestions = {};
 
-  game.players = _.shuffle(game.players);
-  _.each(game.players, function(p,i){
-    var randomUser = (i===0) ? game.players[game.players.length-1] : game.players[i-1];
+  if(!playerAdded && game.assignedQuestions){
+    unassignedPlayers = _.map(game.assignedQuestions, function(player, key){ return player; });
+  } else {
+    unassignedPlayers = game.players;
+  }
+
+  unassignedPlayers = _.shuffle(unassignedPlayers);
+  _.each(gamePlayers, function(p,i){
+    var randomUser = (i===0) ? unassignedPlayers[unassignedPlayers.length-1] : unassignedPlayers[i-1];
     assignedQuestions[p] = randomUser;
   });
 
   Games.update({_id: docId}, {$set: {assignedQuestions: assignedQuestions}});
 }
+function checkIfAllQuestionsAreAsked(game){
+  var questions = Questions.find({gameId: game._id, round: game.round}).fetch();
 
+  if(questions.length === game.players.length){
+    console.log('got in here');
+    randomizeQuestions(game._id);
+
+    Games.update(game._id, {
+      $set: {state: stateFlow[game.state]}
+    });
+  }
+}
+function checkIfUnansweredQuestions(game){
+  var unansweredQuestions = Questions.find({gameId: game._id, round: game.round, answeredUserId: {$exists: false}}).fetch();
+  if(!unansweredQuestions.length){
+    Games.update(game._id, {
+      $set: {state: stateFlow[game.state]}
+    });
+
+    randomizeQuestions(game._id);
+  }
+}
 var joinGameQuery = Games.find();
 var handle = joinGameQuery.observeChanges({
   changed: function(docId, doc) {
@@ -28,7 +56,16 @@ var handle = joinGameQuery.observeChanges({
     }
     // if player is added or removed or if round changes
     if((doc && doc.players) || (doc && doc.round)){
-      randomizeQuestions(docId);
+      randomizeQuestions(docId, true);
+    }
+    // if player is added or removed
+    if((doc && doc.players)){
+      var game = Games.findOne({_id: docId});
+      if(game.state === 'question'){
+        checkIfAllQuestionsAreAsked(game);
+      } else if(game.state === 'answer'){
+        checkIfUnansweredQuestions(game);
+      }
     }
   }
 });
@@ -41,16 +78,7 @@ var handle = answerQuestionQuery.observeChanges({
       if(!game){
         return false;
       }
-      var questions = Questions.find({gameId: game._id, round: game.round}).fetch();
-
-      if(questions.length === game.players.length){
-        console.log('obj');
-        randomizeQuestions(game._id);
-
-        Games.update(doc.gameId, {
-          $set: {state: stateFlow[game.state]}
-        });
-      }
+      checkIfAllQuestionsAreAsked(game);
     }
   },
   changed: function(docId, doc,a,b) {
@@ -66,14 +94,8 @@ var handle = answerQuestionQuery.observeChanges({
         return false;
       }
 
-      var unansweredQuestions = Questions.find({gameId: game._id, round: game.round, answeredUserId: {$exists: false}}).fetch();
-      if(!unansweredQuestions.length){
-        Games.update(game._id, {
-          $set: {state: stateFlow[game.state]}
-        });
+      checkIfUnansweredQuestions(game);
 
-        randomizeQuestions(game._id);
-      }
     }
   },
   removed: function(docId){

@@ -2,7 +2,7 @@
   <div class="layout vertical center question-page">
     <form ng-submit="answerQuestion(answer)" ng-hide="questionAnswered" class="layout vertical center">
       <label for="" class="self-start">{{question.question}}</label>
-      <textarea ng-model="answer" placeholder="Well..."></textarea>
+      <textarea ng-model="answer" placeholder="Answer"></textarea>
       <button type="submit" class="btn margin-top-1">Submit</button>
     </form>
     <div ng-show="questionAnswered">

@@ -16,3 +16,4 @@ angularui:angular-ui-router
 simple:rest
 nimble:restivus
 simple:json-routes
+angularui:angular-ui-bootstrap

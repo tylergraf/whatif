@@ -1,4 +1,4 @@
-var app = angular.module('whatif', ['angular-meteor','ui.router','RouteControllers','Components']);
+var app = angular.module('whatif', ['angular-meteor','ui.router','RouteControllers','Components','ui.bootstrap']);
 
 app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
   function($urlRouterProvider, $stateProvider, $locationProvider){
